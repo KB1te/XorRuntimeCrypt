@@ -13,6 +13,7 @@ const char *Crypt(const char *buff) {
 	for (unsigned int i = 0; i < strlen(buff); i++) {
 		out[i] = buff[i] ^ (DWORD32)&peb;
 	}
+	free(out);
 	return out;
 }
 
