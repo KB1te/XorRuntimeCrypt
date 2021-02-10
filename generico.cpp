@@ -13,7 +13,6 @@ const char *Crypt(const char *buff) {
 	for (unsigned int i = 0; i < strlen(buff); i++) {
 		out[i] = buff[i] ^ (DWORD32)&peb;
 	}
-	free(out);
 	return out;
 }
 
@@ -22,5 +21,6 @@ int main()
 	const char *toCrypt = Crypt("KB1te");
 	printf("%s\n",toCrypt);
 	printf("%s\n", Crypt(toCrypt));
+	free(toCrypt);
 }
 
