@@ -7,7 +7,7 @@ const char *Crypt(const char *buff) {
 	PEB peb = { 0 };
 	NtQueryInformationProcess(GetCurrentProcess(), ProcessBasicInformation, &peb, sizeof(PROCESS_BASIC_INFORMATION), NULL);
 	char *out = (char*)calloc(sizeof(buff), sizeof(char*));
-	if (out == nullptr) {
+	if (!out) {
 		return NULL;
 	}
 	for (unsigned int i = 0; i < strlen(buff); i++) {
@@ -19,6 +19,9 @@ const char *Crypt(const char *buff) {
 int main()
 {
 	const char *toCrypt = Crypt("KB1te");
+	if(!toCrypt){
+		return 1;
+	}
 	printf("%s\n",toCrypt);
 	printf("%s\n", Crypt(toCrypt));
 	free(toCrypt);
